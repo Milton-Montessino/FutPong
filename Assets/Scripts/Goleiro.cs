@@ -229,4 +229,10 @@ public class Goleiro : MonoBehaviour
             extensaoBaixo + extensaoCima
         );
     }
+
+    public void DefinirPosicao(Vector2 novaPosicao)
+    {
+        transform.position = novaPosicao;
+        velocidadeAtual = Vector2.zero;
+    }
 }

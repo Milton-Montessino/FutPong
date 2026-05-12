@@ -20,8 +20,13 @@ public class Bola : MonoBehaviour
     [SerializeField] private float extensaoHorizontal = 0.25f;
     [SerializeField] private float extensaoVertical = 0.25f;
 
+    private Vector3 posicaoInicial;
     private Vector2 direcaoAtual;
     private float velocidadeAtual;
+
+    public float ExtensaoHorizontal => extensaoHorizontal;
+    public float ExtensaoVertical => extensaoVertical;
+    public bool EstaAtiva => gameObject.activeSelf;
 
     private void Start()
     {
@@ -32,8 +37,9 @@ public class Bola : MonoBehaviour
             return;
         }
 
+        posicaoInicial = transform.position;
         velocidadeAtual = velocidadeInicial;
-        direcaoAtual = direcaoInicial.normalized;
+        direcaoAtual = SortearDirecaoInicialAleatoria();
     }
 
     private void Update()
@@ -134,5 +140,29 @@ public class Bola : MonoBehaviour
             direcaoAtual.x *= -1f;
             velocidadeAtual = velocidadeAoBaterNaLateral;
         }
+    }
+
+    public void PararEEsconder()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void ReiniciarNoCentro(int direcaoHorizontal)
+    {
+        transform.position = posicaoInicial;
+        velocidadeAtual = velocidadeInicial;
+
+        float eixoX = direcaoHorizontal >= 0 ? 1f : -1f;
+        float eixoY = Mathf.Abs(direcaoInicial.y) > 0f ? Mathf.Sign(direcaoInicial.y) : 1f;
+        direcaoAtual = new Vector2(eixoX, eixoY).normalized;
+
+        gameObject.SetActive(true);
+    }
+
+    private Vector2 SortearDirecaoInicialAleatoria()
+    {
+        float eixoX = Random.value < 0.5f ? -1f : 1f;
+        float eixoY = Random.value < 0.5f ? -1f : 1f;
+        return new Vector2(eixoX, eixoY).normalized;
     }
 }

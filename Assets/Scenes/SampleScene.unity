@@ -196,7 +196,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -311,7 +311,7 @@ Transform:
   m_GameObject: {fileID: 302479005}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26, y: 0, z: 0}
+  m_LocalPosition: {x: 25.75, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -632,6 +632,54 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619394800}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &758615213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 758615215}
+  - component: {fileID: 758615214}
+  m_Layer: 0
+  m_Name: PlacarUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &758615214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758615213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af4f4874784dd8adcaa5e42c2fa12f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlacarUi
+  partida: {fileID: 1426196694}
+  textoGolsEsquerda: {fileID: 814628189}
+  textoTempo: {fileID: 1815440298}
+  textoGolsDireita: {fileID: 1832505159}
+--- !u!4 &758615215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758615213}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1180,14 +1228,67 @@ MonoBehaviour:
   limiteSuperior: 14.6
   limiteInferior: -14.6
   linhaCentralX: 0
-  golEsquerdoMinX: -29
-  golEsquerdoMaxX: -28
-  golEsquerdoMinY: -6
-  golEsquerdoMaxY: 6
-  golDireitoMinX: 28
-  golDireitoMaxX: 29
-  golDireitoMinY: -6
-  golDireitoMaxY: 6
+  golEsquerdoMinX: -28
+  golEsquerdoMaxX: -26
+  golEsquerdoMinY: -15
+  golEsquerdoMaxY: 15
+  golDireitoMinX: 26
+  golDireitoMaxX: 28
+  golDireitoMinY: -15
+  golDireitoMaxY: 15
+--- !u!1 &1426196693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1426196695}
+  - component: {fileID: 1426196694}
+  m_Layer: 0
+  m_Name: Partida
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1426196694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426196693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec00cb827d07b185a88a6e78e136800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Partida
+  bola: {fileID: 1880275177}
+  goleiroEsquerdo: {fileID: 1709130726}
+  goleiroDireito: {fileID: 302479008}
+  golsEsquerda: 0
+  golsDireita: 0
+  duracaoPartidaEmSegundos: 180
+  tempoAntesDoReinicio: 2.5
+  posicaoInicialGoleiroEsquerdo: {x: -25.75, y: 0}
+  posicaoInicialGoleiroDireito: {x: 25.75, y: 0}
+--- !u!4 &1426196695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426196693}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1502120937
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,6 +1378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1508068865}
   - component: {fileID: 1508068864}
+  - component: {fileID: 1508068866}
   m_Layer: 0
   m_Name: GolEsquerdo
   m_TagString: Untagged
@@ -1331,7 +1433,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.31764707, g: 0.6117647, b: 0.40392157, a: 1}
@@ -1358,6 +1460,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1508068866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508068863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb3820fbc45140c96be3d2df82787cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gols
+  bola: {fileID: 1880275177}
+  partida: {fileID: 1426196694}
+  ladoGol: 0
+  limiteMinX: -29
+  limiteMaxX: -28
+  limiteMinY: -6
+  limiteMaxY: 6
 --- !u!1 &1579786357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1535,7 +1656,7 @@ Transform:
   m_GameObject: {fileID: 1709130723}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26, y: 0, z: 0}
+  m_LocalPosition: {x: -25.75, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1838,15 +1959,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880275176}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f7f5c8c5abb1aa9ba3c113c04dc547f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bola
   campo: {fileID: 1233805584}
-  velocidadeInicial: 10
+  goleiroEsquerdo: {fileID: 1709130726}
+  goleiroDireito: {fileID: 302479008}
+  velocidadeInicial: 16
+  velocidadeAoBaterNoGoleiro: 26
+  velocidadeAoBaterNaLateral: 18
   direcaoInicial: {x: 1, y: 1}
-  raio: 0.25
+  intensidadeDesvioVertical: 0.75
+  influenciaMovimentoVerticalGoleiro: 0.035
+  componenteHorizontalMinimaNoRebote: 0.75
+  extensaoHorizontal: 0.25
+  extensaoVertical: 0.25
 --- !u!212 &1880275178
 SpriteRenderer:
   serializedVersion: 2
@@ -1931,6 +2060,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1978954783}
   - component: {fileID: 1978954782}
+  - component: {fileID: 1978954784}
   m_Layer: 0
   m_Name: GolDireito
   m_TagString: Untagged
@@ -1985,7 +2115,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.31764707, g: 0.6117647, b: 0.40392157, a: 1}
@@ -2012,6 +2142,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1978954784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978954781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb3820fbc45140c96be3d2df82787cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gols
+  bola: {fileID: 1880275177}
+  partida: {fileID: 1426196694}
+  ladoGol: 1
+  limiteMinX: 28
+  limiteMaxX: 29
+  limiteMinY: -6
+  limiteMaxY: 6
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2031,3 +2180,5 @@ SceneRoots:
   - {fileID: 302479007}
   - {fileID: 1508068865}
   - {fileID: 1978954783}
+  - {fileID: 1426196695}
+  - {fileID: 758615215}
