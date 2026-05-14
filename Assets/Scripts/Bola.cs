@@ -23,10 +23,12 @@ public class Bola : MonoBehaviour
     private Vector3 posicaoInicial;
     private Vector2 direcaoAtual;
     private float velocidadeAtual;
+    private Goleiro ultimoGoleiroQueTocou;
 
     public float ExtensaoHorizontal => extensaoHorizontal;
     public float ExtensaoVertical => extensaoVertical;
     public bool EstaAtiva => gameObject.activeSelf;
+    public Goleiro UltimoGoleiroQueTocou => ultimoGoleiroQueTocou;
 
     private void Start()
     {
@@ -40,6 +42,7 @@ public class Bola : MonoBehaviour
         posicaoInicial = transform.position;
         velocidadeAtual = velocidadeInicial;
         direcaoAtual = SortearDirecaoInicialAleatoria();
+        ultimoGoleiroQueTocou = null;
     }
 
     private void Update()
@@ -105,6 +108,7 @@ public class Bola : MonoBehaviour
 
         direcaoAtual = new Vector2(direcaoHorizontal * componenteHorizontal, componenteVertical).normalized;
         velocidadeAtual = velocidadeAoBaterNoGoleiro;
+        ultimoGoleiroQueTocou = goleiro;
     }
 
     private void VerificarColisaoVertical(ref Vector2 posicao)
@@ -151,6 +155,7 @@ public class Bola : MonoBehaviour
     {
         transform.position = posicaoInicial;
         velocidadeAtual = velocidadeInicial;
+        ultimoGoleiroQueTocou = null;
 
         float eixoX = direcaoHorizontal >= 0 ? 1f : -1f;
         float eixoY = Mathf.Abs(direcaoInicial.y) > 0f ? Mathf.Sign(direcaoInicial.y) : 1f;

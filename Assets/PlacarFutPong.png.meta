@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0c37981c93a38bc54bbc519a690cdf14
+guid: bae2395fb8c3716e7a309265e25c26b0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3819460684044421913
-    second: Placar-1.png_0
+      213: 4360328690939763167
+    second: PlacarFutPong_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Placar-1.png_0
+      name: PlacarFutPong_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 72
-        height: 8
+        width: 256
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 91bc90a7143710530800000000000000
-      internalID: 3819460684044421913
+      spriteID: fd99867a7dff28c30800000000000000
+      internalID: 4360328690939763167
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Placar-1.png_0: 3819460684044421913
+      PlacarFutPong_0: 4360328690939763167
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

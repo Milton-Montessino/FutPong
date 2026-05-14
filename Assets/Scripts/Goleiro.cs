@@ -29,6 +29,9 @@ public class Goleiro : MonoBehaviour
     [SerializeField] private KeyCode teclaDireita = KeyCode.D;
 
     private InputAction acaoMovimento;
+    private Vector3 escalaInicial;
+    private float extensaoBaixoInicial;
+    private float extensaoCimaInicial;
     private Vector2 velocidadeAtual;
 
     public float LimiteColisaoEsquerda => transform.position.x - extensaoEsquerda;
@@ -39,6 +42,9 @@ public class Goleiro : MonoBehaviour
 
     private void Awake()
     {
+        escalaInicial = transform.localScale;
+        extensaoBaixoInicial = extensaoBaixo;
+        extensaoCimaInicial = extensaoCima;
         CriarAcaoDeMovimento();
     }
 
@@ -234,5 +240,22 @@ public class Goleiro : MonoBehaviour
     {
         transform.position = novaPosicao;
         velocidadeAtual = Vector2.zero;
+    }
+
+    public void DefinirMultiplicadorAltura(float multiplicador)
+    {
+        float multiplicadorValido = Mathf.Max(0.1f, multiplicador);
+
+        extensaoBaixo = extensaoBaixoInicial * multiplicadorValido;
+        extensaoCima = extensaoCimaInicial * multiplicadorValido;
+
+        Vector3 novaEscala = escalaInicial;
+        novaEscala.y = escalaInicial.y * multiplicadorValido;
+        transform.localScale = novaEscala;
+    }
+
+    public void RestaurarAlturaPadrao()
+    {
+        DefinirMultiplicadorAltura(1f);
     }
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1410d771597dbb68fb145a73b17d4c07
+guid: d5654945fa7df35e1ac8f4d7f6e601d4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7960134129199044641
-    second: Campo-1.png_0
+      213: -860264664590275695
+    second: Caixa_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Campo-1.png_0
+      name: Caixa_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 72
-        height: 41
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fd7a0a02f2ce78190800000000000000
-      internalID: -7960134129199044641
+      spriteID: 19ba64e68d9bf04f0800000000000000
+      internalID: -860264664590275695
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Campo-1.png_0: -7960134129199044641
+      Caixa_0: -860264664590275695
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

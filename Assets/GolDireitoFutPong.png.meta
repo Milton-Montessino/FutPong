@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a9008067a248f5fffb21312983999d02
+guid: 380b694e287a01f9691dd7ddf63100fd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 328928979027647640
-    second: Jair_0
+      213: -7857905169419510211
+    second: GolDireitoFutPong_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jair_0
+      name: GolDireitoFutPong_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2598
-        height: 2479
+        width: 10
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 89c5647e927909400800000000000000
-      internalID: 328928979027647640
+      spriteID: d3e5b02a1ec13f290800000000000000
+      internalID: -7857905169419510211
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Jair_0: 328928979027647640
+      GolDireitoFutPong_0: -7857905169419510211
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

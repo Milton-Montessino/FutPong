@@ -19,6 +19,17 @@ public class Gols : MonoBehaviour
     [SerializeField] private float limiteMinY = -15f;
     [SerializeField] private float limiteMaxY = 15f;
 
+    private Vector3 escalaInicial;
+    private float limiteMinYInicial;
+    private float limiteMaxYInicial;
+
+    private void Awake()
+    {
+        escalaInicial = transform.localScale;
+        limiteMinYInicial = limiteMinY;
+        limiteMaxYInicial = limiteMaxY;
+    }
+
     private void Start()
     {
         if (bola == null)
@@ -38,6 +49,11 @@ public class Gols : MonoBehaviour
 
     private void Update()
     {
+        if (partida == null || partida.PartidaEncerrada)
+        {
+            return;
+        }
+
         if (bola == null || !bola.EstaAtiva)
         {
             return;
@@ -105,5 +121,25 @@ public class Gols : MonoBehaviour
         );
 
         Gizmos.DrawWireCube(centro, tamanho);
+    }
+
+    public void DefinirMultiplicadorAltura(float multiplicador)
+    {
+        float multiplicadorValido = Mathf.Max(0.1f, multiplicador);
+        float centroY = (limiteMinYInicial + limiteMaxYInicial) * 0.5f;
+        float meiaAlturaBase = (limiteMaxYInicial - limiteMinYInicial) * 0.5f;
+        float meiaAlturaAtual = meiaAlturaBase * multiplicadorValido;
+
+        limiteMinY = centroY - meiaAlturaAtual;
+        limiteMaxY = centroY + meiaAlturaAtual;
+
+        Vector3 novaEscala = escalaInicial;
+        novaEscala.y = escalaInicial.y * multiplicadorValido;
+        transform.localScale = novaEscala;
+    }
+
+    public void RestaurarAlturaPadrao()
+    {
+        DefinirMultiplicadorAltura(1f);
     }
 }
