@@ -33,7 +33,6 @@ public class Partida : MonoBehaviour
 
     [Header("Modificadores Temporarios")]
     [SerializeField] private float duracaoDosModificadores = 30f;
-    [SerializeField] private float multiplicadorGolPequeno = 0.6f;
     [SerializeField] private float multiplicadorGoleiroGrande = 1.5f;
 
     [Header("Posicoes Iniciais dos Goleiros")]
@@ -168,8 +167,8 @@ public class Partida : MonoBehaviour
 
     private void AtualizarModificadoresTemporarios()
     {
-        AtualizarTempoModificador(ref tempoGolPequenoEsquerda, () => golEsquerdo.RestaurarAlturaPadrao());
-        AtualizarTempoModificador(ref tempoGolPequenoDireita, () => golDireito.RestaurarAlturaPadrao());
+        AtualizarTempoModificador(ref tempoGolPequenoEsquerda, () => golEsquerdo.DesativarGolPequeno());
+        AtualizarTempoModificador(ref tempoGolPequenoDireita, () => golDireito.DesativarGolPequeno());
         AtualizarTempoModificador(ref tempoGoleiroGrandeEsquerda, () => goleiroEsquerdo.RestaurarAlturaPadrao());
         AtualizarTempoModificador(ref tempoGoleiroGrandeDireita, () => goleiroDireito.RestaurarAlturaPadrao());
     }
@@ -238,12 +237,12 @@ public class Partida : MonoBehaviour
             if (alvoEsquerda)
             {
                 tempoGolPequenoEsquerda = duracaoDosModificadores;
-                golEsquerdo.DefinirMultiplicadorAltura(multiplicadorGolPequeno);
+                golEsquerdo.AtivarGolPequeno();
             }
             else
             {
                 tempoGolPequenoDireita = duracaoDosModificadores;
-                golDireito.DefinirMultiplicadorAltura(multiplicadorGolPequeno);
+                golDireito.AtivarGolPequeno();
             }
         }
         else

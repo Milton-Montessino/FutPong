@@ -11,23 +11,33 @@ public class Gols : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] private Bola bola;
     [SerializeField] private Partida partida;
+    [SerializeField] private SpriteRenderer spriteRendererGol;
+    [SerializeField] private Sprite spriteGolNormal;
+    [SerializeField] private Sprite spriteGolPequeno;
 
     [Header("Configuracao do Gol")]
     [SerializeField] private LadoGol ladoGol = LadoGol.Esquerdo;
+
+    [Header("Limites Normais")]
     [SerializeField] private float limiteMinX = -30f;
     [SerializeField] private float limiteMaxX = -28f;
     [SerializeField] private float limiteMinY = -15f;
     [SerializeField] private float limiteMaxY = 15f;
 
-    private Vector3 escalaInicial;
-    private float limiteMinYInicial;
-    private float limiteMaxYInicial;
+    [Header("Limites do Gol Pequeno")]
+    [SerializeField] private float limitePequenoMinX = -30f;
+    [SerializeField] private float limitePequenoMaxX = -28f;
+    [SerializeField] private float limitePequenoMinY = -8f;
+    [SerializeField] private float limitePequenoMaxY = 8f;
+
+    private bool golPequenoAtivo;
 
     private void Awake()
     {
-        escalaInicial = transform.localScale;
-        limiteMinYInicial = limiteMinY;
-        limiteMaxYInicial = limiteMaxY;
+        if (spriteRendererGol == null)
+        {
+            spriteRendererGol = GetComponent<SpriteRenderer>();
+        }
     }
 
     private void Start()
@@ -45,6 +55,8 @@ public class Gols : MonoBehaviour
             enabled = false;
             return;
         }
+
+        AtualizarVisualDoGol();
     }
 
     private void Update()
@@ -79,67 +91,94 @@ public class Gols : MonoBehaviour
     private bool BolaEntrouNoGol()
     {
         Vector2 posicaoBola = bola.transform.position;
-
         float bolaMinX = posicaoBola.x - bola.ExtensaoHorizontal;
         float bolaMaxX = posicaoBola.x + bola.ExtensaoHorizontal;
         float bolaMinY = posicaoBola.y - bola.ExtensaoVertical;
         float bolaMaxY = posicaoBola.y + bola.ExtensaoVertical;
 
-        bool sobrepoeHorizontalmente = bolaMaxX >= limiteMinX && bolaMinX <= limiteMaxX;
-        bool sobrepoeVerticalmente = bolaMaxY >= limiteMinY && bolaMinY <= limiteMaxY;
+        ObterLimitesAtuais(out float minX, out float maxX, out float minY, out float maxY);
+
+        bool sobrepoeHorizontalmente = bolaMaxX >= minX && bolaMinX <= maxX;
+        bool sobrepoeVerticalmente = bolaMaxY >= minY && bolaMinY <= maxY;
 
         return sobrepoeHorizontalmente && sobrepoeVerticalmente;
     }
 
-    private void OnValidate()
+    private void ObterLimitesAtuais(out float minX, out float maxX, out float minY, out float maxY)
     {
-        if (limiteMinX > limiteMaxX)
+        if (golPequenoAtivo)
         {
-            limiteMaxX = limiteMinX;
+            minX = limitePequenoMinX;
+            maxX = limitePequenoMaxX;
+            minY = limitePequenoMinY;
+            maxY = limitePequenoMaxY;
+            return;
         }
 
-        if (limiteMinY > limiteMaxY)
+        minX = limiteMinX;
+        maxX = limiteMaxX;
+        minY = limiteMinY;
+        maxY = limiteMaxY;
+    }
+
+    private void AtualizarVisualDoGol()
+    {
+        if (spriteRendererGol == null)
         {
-            limiteMaxY = limiteMinY;
+            return;
+        }
+
+        if (golPequenoAtivo && spriteGolPequeno != null)
+        {
+            spriteRendererGol.sprite = spriteGolPequeno;
+            return;
+        }
+
+        if (spriteGolNormal != null)
+        {
+            spriteRendererGol.sprite = spriteGolNormal;
+        }
+    }
+
+    public void AtivarGolPequeno()
+    {
+        golPequenoAtivo = true;
+        AtualizarVisualDoGol();
+    }
+
+    public void DesativarGolPequeno()
+    {
+        golPequenoAtivo = false;
+        AtualizarVisualDoGol();
+    }
+
+    private void OnValidate()
+    {
+        CorrigirMinMax(ref limiteMinX, ref limiteMaxX);
+        CorrigirMinMax(ref limiteMinY, ref limiteMaxY);
+        CorrigirMinMax(ref limitePequenoMinX, ref limitePequenoMaxX);
+        CorrigirMinMax(ref limitePequenoMinY, ref limitePequenoMaxY);
+    }
+
+    private void CorrigirMinMax(ref float min, ref float max)
+    {
+        if (min > max)
+        {
+            max = min;
         }
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.magenta;
+        DesenharGizmoArea(limiteMinX, limiteMaxX, limiteMinY, limiteMaxY, Color.magenta);
+        DesenharGizmoArea(limitePequenoMinX, limitePequenoMaxX, limitePequenoMinY, limitePequenoMaxY, Color.yellow);
+    }
 
-        Vector3 centro = new Vector3(
-            (limiteMinX + limiteMaxX) * 0.5f,
-            (limiteMinY + limiteMaxY) * 0.5f,
-            0f
-        );
-
-        Vector3 tamanho = new Vector3(
-            limiteMaxX - limiteMinX,
-            limiteMaxY - limiteMinY,
-            0f
-        );
-
+    private void DesenharGizmoArea(float minX, float maxX, float minY, float maxY, Color cor)
+    {
+        Gizmos.color = cor;
+        Vector3 centro = new Vector3((minX + maxX) * 0.5f, (minY + maxY) * 0.5f, 0f);
+        Vector3 tamanho = new Vector3(maxX - minX, maxY - minY, 0f);
         Gizmos.DrawWireCube(centro, tamanho);
-    }
-
-    public void DefinirMultiplicadorAltura(float multiplicador)
-    {
-        float multiplicadorValido = Mathf.Max(0.1f, multiplicador);
-        float centroY = (limiteMinYInicial + limiteMaxYInicial) * 0.5f;
-        float meiaAlturaBase = (limiteMaxYInicial - limiteMinYInicial) * 0.5f;
-        float meiaAlturaAtual = meiaAlturaBase * multiplicadorValido;
-
-        limiteMinY = centroY - meiaAlturaAtual;
-        limiteMaxY = centroY + meiaAlturaAtual;
-
-        Vector3 novaEscala = escalaInicial;
-        novaEscala.y = escalaInicial.y * multiplicadorValido;
-        transform.localScale = novaEscala;
-    }
-
-    public void RestaurarAlturaPadrao()
-    {
-        DefinirMultiplicadorAltura(1f);
     }
 }

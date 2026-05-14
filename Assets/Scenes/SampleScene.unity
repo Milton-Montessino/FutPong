@@ -1390,7 +1390,6 @@ MonoBehaviour:
   duracaoPartidaEmSegundos: 180
   tempoAntesDoReinicio: 2.5
   duracaoDosModificadores: 30
-  multiplicadorGolPequeno: 0.6
   multiplicadorGoleiroGrande: 1.5
   posicaoInicialGoleiroEsquerdo: {x: -25.75, y: 0}
   posicaoInicialGoleiroDireito: {x: 25.75, y: 0}
@@ -1556,7 +1555,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: -440741085310731596, guid: 4a2b34e8958357490aab7b7a2de53f87, type: 3}
-  m_Color: {r: 0.93333334, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.9843137, g: 1, b: 0.9490196, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1574,7 +1573,7 @@ Transform:
   m_GameObject: {fileID: 1508068863}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.7, y: 0, z: 0}
+  m_LocalPosition: {x: -27.67, y: 0, z: 0}
   m_LocalScale: {x: 22.5, y: 23.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1594,11 +1593,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gols
   bola: {fileID: 1880275177}
   partida: {fileID: 1426196694}
+  spriteRendererGol: {fileID: 1508068864}
+  spriteGolNormal: {fileID: -440741085310731596, guid: 4a2b34e8958357490aab7b7a2de53f87, type: 3}
+  spriteGolPequeno: {fileID: -1492474766174129859, guid: 461cb82e25c85559c849e11c3fb492ce, type: 3}
   ladoGol: 0
   limiteMinX: -29
   limiteMaxX: -28
   limiteMinY: -5.8
   limiteMaxY: 5.8
+  limitePequenoMinX: -29
+  limitePequenoMaxX: -28
+  limitePequenoMinY: -3.8
+  limitePequenoMaxY: 3.8
 --- !u!1 &1579786357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2238,7 +2244,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: -7857905169419510211, guid: 380b694e287a01f9691dd7ddf63100fd, type: 3}
-  m_Color: {r: 0.93333334, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.9827044, g: 1, b: 0.9481132, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2256,7 +2262,7 @@ Transform:
   m_GameObject: {fileID: 1978954781}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.7, y: 0, z: 0}
+  m_LocalPosition: {x: 27.67, y: 0, z: 0}
   m_LocalScale: {x: 22.5, y: 23.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2276,11 +2282,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gols
   bola: {fileID: 1880275177}
   partida: {fileID: 1426196694}
+  spriteRendererGol: {fileID: 1978954782}
+  spriteGolNormal: {fileID: -7857905169419510211, guid: 380b694e287a01f9691dd7ddf63100fd, type: 3}
+  spriteGolPequeno: {fileID: 5281544431480104679, guid: 0835acb3f900daf11ad16f4e1c5d4bb8, type: 3}
   ladoGol: 1
   limiteMinX: 28
   limiteMaxX: 29
   limiteMinY: -5.8
   limiteMaxY: 5.8
+  limitePequenoMinX: 28
+  limitePequenoMaxX: 29
+  limitePequenoMinY: -3.8
+  limitePequenoMaxY: 3.8
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
