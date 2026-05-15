@@ -35,6 +35,12 @@ public class Partida : MonoBehaviour
     [SerializeField] private float duracaoDosModificadores = 30f;
     [SerializeField] private float multiplicadorGoleiroGrande = 1.5f;
 
+    [Header("Indicadores Visuais dos Modificadores")]
+    [SerializeField] private GameObject modificadorGolEsquerdo;
+    [SerializeField] private GameObject modificadorGoleiroEsquerdo;
+    [SerializeField] private GameObject modificadorGolDireito;
+    [SerializeField] private GameObject modificadorGoleiroDireito;
+
     [Header("Posicoes Iniciais dos Goleiros")]
     [SerializeField] private Vector2 posicaoInicialGoleiroEsquerdo = new Vector2(-25.75f, 0f);
     [SerializeField] private Vector2 posicaoInicialGoleiroDireito = new Vector2(25.75f, 0f);
@@ -72,6 +78,7 @@ public class Partida : MonoBehaviour
 
         tempoRestante = duracaoPartidaEmSegundos;
         ReiniciarPosicaoDosGoleiros();
+        AtualizarIndicadoresVisuaisDosModificadores();
     }
 
     private void Update()
@@ -171,6 +178,7 @@ public class Partida : MonoBehaviour
         AtualizarTempoModificador(ref tempoGolPequenoDireita, () => golDireito.DesativarGolPequeno());
         AtualizarTempoModificador(ref tempoGoleiroGrandeEsquerda, () => goleiroEsquerdo.RestaurarAlturaPadrao());
         AtualizarTempoModificador(ref tempoGoleiroGrandeDireita, () => goleiroDireito.RestaurarAlturaPadrao());
+        AtualizarIndicadoresVisuaisDosModificadores();
     }
 
     private void AtualizarTempoModificador(ref float tempoModificador, System.Action aoExpirar)
@@ -202,6 +210,8 @@ public class Partida : MonoBehaviour
         aguardandoReinicio = false;
         contadorReinicio = 0f;
         bola.PararEEsconder();
+        LimparModificadoresAtivos();
+        AtualizarIndicadoresVisuaisDosModificadores();
 
         if (golsEsquerda > golsDireita)
         {
@@ -258,5 +268,43 @@ public class Partida : MonoBehaviour
                 goleiroDireito.DefinirMultiplicadorAltura(multiplicadorGoleiroGrande);
             }
         }
+
+        AtualizarIndicadoresVisuaisDosModificadores();
+    }
+
+    private void LimparModificadoresAtivos()
+    {
+        tempoGolPequenoEsquerda = 0f;
+        tempoGolPequenoDireita = 0f;
+        tempoGoleiroGrandeEsquerda = 0f;
+        tempoGoleiroGrandeDireita = 0f;
+
+        golEsquerdo.DesativarGolPequeno();
+        golDireito.DesativarGolPequeno();
+        goleiroEsquerdo.RestaurarAlturaPadrao();
+        goleiroDireito.RestaurarAlturaPadrao();
+    }
+
+    private void AtualizarIndicadoresVisuaisDosModificadores()
+    {
+        DefinirObjetoAtivo(modificadorGolEsquerdo, tempoGolPequenoEsquerda > 0f);
+        DefinirObjetoAtivo(modificadorGoleiroEsquerdo, tempoGoleiroGrandeEsquerda > 0f);
+        DefinirObjetoAtivo(modificadorGolDireito, tempoGolPequenoDireita > 0f);
+        DefinirObjetoAtivo(modificadorGoleiroDireito, tempoGoleiroGrandeDireita > 0f);
+    }
+
+    private void DefinirObjetoAtivo(GameObject objeto, bool ativo)
+    {
+        if (objeto == null)
+        {
+            return;
+        }
+
+        if (objeto.activeSelf == ativo)
+        {
+            return;
+        }
+
+        objeto.SetActive(ativo);
     }
 }
